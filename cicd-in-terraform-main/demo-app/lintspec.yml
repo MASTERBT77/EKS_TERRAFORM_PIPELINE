@@ -1,0 +1,15 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.9
+    commands:
+      - pip3 install --upgrade aws-sam-cli selenium pylint
+      - pip3 install -r app/requirements.txt 
+
+  build:
+    commands:
+      - echo Linting...
+      - pylint app/helloworld_api.py
+ 

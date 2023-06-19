@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.9
+    commands:
+      - echo Installing python app dependencies...
+      - pip3 install pytest
+      - pip3 install pytest-cov
+      - pip3 install -r app/requirements.txt 
+
+  build:
+    commands:
+      - echo running tests...
+      - python3 -m pytest --junitxml=unittests.xml --cov-report xml:coverage.xml --cov=app
+reports:
+  unit_tests:
+    files:
+      - unittests.xml
+    file-format: JUNITXML
+  coverage_tests:
+    files:
+      - coverage.xml
+    file-format: COBERTURAXML
